@@ -2,6 +2,21 @@ import React, { Component, Fragment } from 'react'
 import { Button } from '@material-ui/core'
 
 class Users extends Component {
+    state = {
+      users: [] 
+    }
+
+  getUsers = () => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then((res)=>res.json())
+    .then((data)=> {
+      this.setState({
+        users: data
+      })
+      console.log(data)
+    })
+  }
+  
   render() {
     return (
       <Fragment>
