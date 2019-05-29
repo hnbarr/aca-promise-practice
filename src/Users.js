@@ -1,17 +1,12 @@
 import React, { Component, Fragment } from 'react'
 import { Button } from '@material-ui/core';
 import { connect } from 'react-redux';
-import { setUsers } from './actions';
+import { getUsersFromAPI } from './actions';
 
 class Users extends Component {
 
   getUsers = () => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-    .then((res)=>res.json())
-    .then((data)=> {
-      this.props.setUsersFromApi(data)
-      console.log(data)
-    })
+    this.props.setUsersFromApi()
   }
 
   render() {
@@ -22,7 +17,16 @@ class Users extends Component {
           <Button onClick={this.getUsers} variant="contained" color="primary">Get Users</Button>
         </div>
         <div className="users-block">
-        {this.props.users.map((user) => console.log(user.name, user.username, user.email, user.website))}
+        {this.props.users.map((user, i) => (
+          <div key={i}>
+            <hr/>
+            <p>Name: {user.name}</p>
+            <p>Username: {user.username}</p>
+            <p>Email: {user.email}</p>
+            <p>Website: {user.website}</p>
+            <hr/>
+          </div>
+        ))}
         </div>
       </Fragment>
     )
@@ -39,8 +43,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    setUsersFromApi: (users) => dispatch(setUsers(users))
-  };
+    setUsersFromApi: () => dispatch(getUsersFromAPI())
+  };  
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Users)
