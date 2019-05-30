@@ -20,10 +20,10 @@ class Users extends Component {
         {this.props.users.map((user, i) => (
           <div key={i}>
             <hr/>
-            <p>Name: {user.name}</p>
-            <p>Username: {user.username}</p>
-            <p>Email: {user.email}</p>
-            <p>Website: {user.website}</p>
+              <p>Name:  {user.name}</p>
+              <p>Username:  {user.username}</p>
+              <p>Email:  {user.email}</p>
+              <p>Website:  {user.website}</p>
             <hr/>
           </div>
         ))}
